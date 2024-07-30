@@ -1,0 +1,45 @@
+﻿@using SimpleWeb.Models.Subscription.Main
+@inject ON.Settings.SettingsClient settingsClient;
+@inject ON.Settings.SubscriptionTierHelper subTierHelper
+@model IndexViewModel
+@{
+    ViewData["Title"] = "My Subscriptions";
+    var subSet = settingsClient.PublicData?.Subscription;
+}
+
+<h1>My Subscriptions</h1>
+
+@if (!Model.HasActiveSubscription)
+{
+    <p>
+        Pick your subscription level.
+    </p>
+    <ul>
+        @foreach (var level in subTierHelper.GetAll())
+        {
+            <li><a href="/subscription/new/@level.AmountCents">@level.Label</a></li>
+        }
+    </ul>
+}
+
+<br />
+<br />
+<br />
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Created</th>
+            <th>Status</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    @foreach (var sub in Model.Subscriptions)
+    {
+        <tr>
+            <td><a asp-action="Single" asp-route-subId="@sub.SubscriptionId.ToString()">@sub.StartedOnUTC.ToShortDateString()</a></td>
+            <td>@sub.StatusPretty</td>
+            <td>$@((sub.AmountCents / 100.0).ToString("###,##0.00"))</td>
+        </tr>
+    }
+</table>

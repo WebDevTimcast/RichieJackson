@@ -1,0 +1,13 @@
+﻿@using ON.Fragments.Authorization.Payment.Paypal
+@model PaypalOwnerSettings
+
+<li class="list-group-item">
+    <h2>Paypal Settings</h2>
+    <form method="post" class="needs-validation" novalidate asp-action="ModifySubscriptionOwnerPaypal">
+        <div class="form-group">
+            <label asp-for="ClientSecret">Client Secret</label>
+            <input class="form-control" asp-for="ClientSecret" />
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</li>

@@ -1,0 +1,21 @@
+﻿@using ON.Fragments.Authorization.Payment.Stripe
+@model StripeOwnerSettings
+
+<li class="list-group-item">
+    <h2>Stripe Settings</h2>
+    <form method="post" class="needs-validation" novalidate asp-action="ModifySubscriptionOwnerStripe">
+        <div class="form-group">
+            <label asp-for="Account"></label>
+            <input class="form-control" asp-for="Account" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ClientID">Client ID</label>
+            <input class="form-control" asp-for="ClientID" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ClientSecret">Client Secret</label>
+            <input class="form-control" asp-for="ClientSecret" />
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</li>

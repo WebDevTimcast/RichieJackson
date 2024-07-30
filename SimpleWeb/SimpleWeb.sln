@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWeb", "SimpleWeb.csproj", "{193932AA-352E-4451-ADA3-FB4CFB2E87A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ON.Authentication.Shared", "..\ON.Install\src\ON.Authentication\Shared\ON.Authentication.Shared.csproj", "{970EADC1-551B-4762-9687-243C4A438D86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ON.Crypto", "..\ON.Install\src\ON.Crypto\ON.Crypto\ON.Crypto.csproj", "{98FCE8DB-FE1C-4092-B406-BDD4D9ED61E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ON.Fragment", "..\ON.Install\src\ON.Fragment\ON.Fragment.csproj", "{09A706E9-0808-4B68-9656-B362134D1ABD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ON.Settings.Shared", "..\ON.Install\src\ON.Settings\Shared\ON.Settings.Shared.csproj", "{14EE1FC2-FB76-4B48-B32D-FC0D849C0251}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{193932AA-352E-4451-ADA3-FB4CFB2E87A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193932AA-352E-4451-ADA3-FB4CFB2E87A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193932AA-352E-4451-ADA3-FB4CFB2E87A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193932AA-352E-4451-ADA3-FB4CFB2E87A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{970EADC1-551B-4762-9687-243C4A438D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{970EADC1-551B-4762-9687-243C4A438D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{970EADC1-551B-4762-9687-243C4A438D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{970EADC1-551B-4762-9687-243C4A438D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98FCE8DB-FE1C-4092-B406-BDD4D9ED61E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98FCE8DB-FE1C-4092-B406-BDD4D9ED61E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98FCE8DB-FE1C-4092-B406-BDD4D9ED61E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98FCE8DB-FE1C-4092-B406-BDD4D9ED61E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A706E9-0808-4B68-9656-B362134D1ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A706E9-0808-4B68-9656-B362134D1ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A706E9-0808-4B68-9656-B362134D1ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A706E9-0808-4B68-9656-B362134D1ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14EE1FC2-FB76-4B48-B32D-FC0D849C0251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14EE1FC2-FB76-4B48-B32D-FC0D849C0251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14EE1FC2-FB76-4B48-B32D-FC0D849C0251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14EE1FC2-FB76-4B48-B32D-FC0D849C0251}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BFC6DAF-CC8A-4E40-AE7D-72C453A699E1}
+	EndGlobalSection
+EndGlobal

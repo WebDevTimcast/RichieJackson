@@ -1,0 +1,15 @@
+﻿@model SimpleWeb.Models.Comment.ViewCommentsViewModel;
+@using SimpleWeb.Models.Comment;
+@using userHelper = ON.Authentication.ONUserHelper;
+@using commentHelper = SimpleWeb.Services.CommentService;
+
+<h4>Comments</h4>
+
+@foreach (var record in Model.Records)
+{
+    <p>
+        By: @(record.UserDisplayName) at: @(record.CreatedOnUTC.ToDateTime().ToString("yyy-MM-dd HH:mm"))
+        <br />
+        @(record.CommentText)
+    </p>
+}

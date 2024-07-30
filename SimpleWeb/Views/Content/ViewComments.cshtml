@@ -1,0 +1,19 @@
+﻿@model SimpleWeb.Models.Comment.ViewCommentsViewModel;
+@using SimpleWeb.Models.Comment;
+@using userHelper = ON.Authentication.ONUserHelper;
+@using commentHelper = SimpleWeb.Services.CommentService;
+
+<h4>Comments</h4>
+
+@foreach (var record in Model.Records)
+{
+    <p>
+        By: @(record.UserDisplayName) at: @(record.CreatedOnUTC.ToDateTime().ToString("yyy-MM-dd HH:mm"))
+        <br />
+        @(record.CommentText)
+        <br />
+        <a asp-action="Replies" asp-controller="Comment" asp-route-id="@(record.CommentID)">Replies (@(record.NumReplies))</a>
+    </p>
+}
+@await Html.PartialAsync("AddComment", Model.NewComment)
+
