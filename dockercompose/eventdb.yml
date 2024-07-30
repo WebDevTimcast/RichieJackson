@@ -1,0 +1,19 @@
+version: '3'
+services:
+  eventdb:
+    image: eventstore/eventstore:21.10.8-buster-slim
+    ports:
+      - 2113:2113
+    environment:
+      - EVENTSTORE_CLUSTER_SIZE=1
+      - EVENTSTORE_RUN_PROJECTIONS=All
+      - EVENTSTORE_START_STANDARD_PROJECTIONS=true
+      - EVENTSTORE_HTTP_PORT=2113
+      - EVENTSTORE_INSECURE=true
+    logging:
+      options:
+        max-size: "10m"
+    restart: always
+    volumes:
+      - ../tmpdata/eventdb/data:/var/lib/eventstore
+      - ../tmpdata/eventdb/logs:/var/log/eventstore

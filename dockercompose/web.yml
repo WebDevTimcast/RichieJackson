@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ../
+    image: simpleweb/web
+    ports:
+      - 80:80
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+    env_file:
+      - ../ON.Install/dockercompose/common/environment.${ENVIRONMENT_FILE}.env
+      - ../ON.Install/dockercompose/common/ports.env
+      - ../ON.Install/dockercompose/common/services.${SERVICES_FILE}.env
+    environment:
+      - JWT_PRIV_KEY=$JWT_PRIV_KEY
+      - JWT_PUB_KEY=$JWT_PUB_KEY

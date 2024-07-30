@@ -1,0 +1,11 @@
+version: '3'
+include:
+  - path: ON.Install/dockercompose/common/auth.yml
+  - path: ON.Install/dockercompose/common/cms.yml
+  - path: ON.Install/dockercompose/common/comment.yml
+  - path: ON.Install/dockercompose/common/payment.yml
+  - path: ON.Install/dockercompose/common/settings.yml
+  - path: ON.Install/dockercompose/common/stats.yml
+  - path: dockercompose/eventdb.yml
+  - path: dockercompose/nginx.yml
+  - path: dockercompose/web.yml
