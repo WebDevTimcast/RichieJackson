@@ -1,0 +1,3 @@
+[submodule "ON.Install"]
+	path = ON.Install
+	url = https://github.com/InvertedTech/ON.Install.git
