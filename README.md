@@ -12,6 +12,9 @@ Run via docker compose
 docker-compose up -d --build
 ```
 
+Navigate to:
+http://localhost:80
+
 Shut it down
 
 ```console
