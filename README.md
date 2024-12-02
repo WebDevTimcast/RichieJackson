@@ -3,7 +3,7 @@
 Clone repository to desired directory
 
 ```console
-git clone  --recurse-submodules https://github.com/InvertedTech/ON.Web.Simple.git
+git clone --recurse-submodules https://github.com/WebDevTimcast/RichieJackson.git
 cd ON.Web.Simple
 ```
 Run via docker compose
