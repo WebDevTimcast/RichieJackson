@@ -40,6 +40,7 @@ namespace SimpleWeb
             services.AddScoped<StatsService>();
             services.AddScoped<UserService>();
             services.AddScoped<Services.Paypal.PaymentsService>();
+            services.AddScoped<Services.Stripe.PaymentsService>();
 
             services.AddSingleton<HtmlSubscriptionTierHelper>();
             services.AddSingleton<SettingsService>();

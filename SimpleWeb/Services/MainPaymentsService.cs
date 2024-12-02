@@ -4,6 +4,7 @@ using ON.Authentication;
 using ON.Fragments.Authorization.Payment;
 using ON.Fragments.Authorization.Payment.Fake;
 using ON.Settings;
+using System;
 using System.Threading.Tasks;
 
 namespace SimpleWeb.Services
@@ -25,7 +26,7 @@ namespace SimpleWeb.Services
 
         public bool IsLoggedIn { get => User != null; }
 
-        public async Task<GetNewDetailsResponse> GetNewDetails(uint level)
+        public async Task<GetNewDetailsResponse> GetNewDetails(uint level, string domainName)
         {
             if (!IsLoggedIn)
                 return null;
@@ -37,8 +38,25 @@ namespace SimpleWeb.Services
 
 
             var client = new PaymentInterface.PaymentInterfaceClient(nameHelper.PaymentServiceChannel);
-            var reply = await client.GetNewDetailsAsync(new GetNewDetailsRequest() { Level = level }, GetMetadata());
+            var reply = await client.GetNewDetailsAsync(new GetNewDetailsRequest() { Level = level, DomainName = domainName }, GetMetadata());
             return reply;
+        }
+
+        public async Task<GetNewOneTimeDetailsResponse> GetNewOneTimeDetails(Guid contentId, string domainName)
+        {
+            if (!IsLoggedIn)
+                return null;
+
+            try
+            {
+                var client = new PaymentInterface.PaymentInterfaceClient(nameHelper.PaymentServiceChannel);
+                var reply = await client.GetNewOneTimeDetailsAsync(new() { InternalId = contentId.ToString(), DomainName = domainName }, GetMetadata());
+                return reply;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<GetOwnSubscriptionRecordsResponse> GetOwnSubscriptionRecord()
