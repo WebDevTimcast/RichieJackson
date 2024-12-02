@@ -4,24 +4,17 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="main-home2">
+<div style="background-color: white; padding: 30px 30px 30px 30px; width: 400px; border-radius: 20px;">
 
-@foreach (var record in Model.Records)
-{
-    <i>@record.PublishOnUTC.ToDateTime().ToLocalTime().ToString("yyyy-MM-dd h:mm tt")</i>
-    <h3>
-        <a href="/content/@(record.ContentID)">@record.Title</a>
-        @if (record.SubscriptionLevel > 0 && Model.ShowLockStatus)
-        {
-            if (record.SubscriptionLevel > Model.UserSubscriptionLevel)
-            {
-                <i class="bi-lock-fill" style="font-size: 1rem; color: cornflowerblue;" aria-label="Locked"></i>
-            } else {
-                <i class="bi-unlock-fill" style="font-size: 1rem; color: cornflowerblue;" aria-label="UnLocked"></i>
-            }
-        }
-    </h3>
-    <pre>@record.Description</pre>
-}
+    @foreach (var record in Model.Records)
+    {
+                <a href="/content/@(record.ContentID)">
+            <img src="/img//RichieThumbnail.jpg" width="300px;" />
+        </a>
+        <h3>
+            <a href="/content/@(record.ContentID)">@record.Title</a>
+        </h3>
+        <i>@record.PublishOnUTC.ToDateTime().ToLocalTime().ToString("yyyy-MM-dd h:mm tt")</i>
+    }
 
 </div>
