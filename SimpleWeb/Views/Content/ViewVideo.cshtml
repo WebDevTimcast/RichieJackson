@@ -21,7 +21,7 @@
 
 <br />
 <br />
-@if (Model.Stats.SavedByUser)
+@*@if (Model.Stats.SavedByUser)
 {
     <a href="/content/@(Model.Record.ContentID)/unsave">Unsave Video</a>
 }
@@ -31,6 +31,7 @@ else
 }
 <br />
 <br />
+*@
 
 @if (Model.CanShowContent(userHelper.MyUser))
 {
