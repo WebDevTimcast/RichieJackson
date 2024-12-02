@@ -1,6 +1,14 @@
 ﻿@inject ON.Authentication.ONUserHelper userHelper;
 @inject ON.Settings.SettingsClient settings;
 @{
+    var addClass = false;
+    try
+    {
+        addClass = ViewBag.IsHome;
+    }
+    catch (Exception)
+    {
+    }
     var siteTitle = settings.PublicData?.Personalization?.Title;
 }
 <!DOCTYPE html>
@@ -14,7 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     @await RenderSectionAsync("Head", required: false)
 </head>
-<body>
+<body class="@(addClass ? "main-home":"")">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -28,14 +36,14 @@
                             @if (userHelper.IsLoggedIn)
                             {
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/subscription">Manage Subscription</a>
+@*                                <a class="dropdown-item" href="/subscription">Manage Subscription</a>*@
                                 <a class="dropdown-item" href="/settings">User Profile</a>
-                                <a class="dropdown-item" href="/saves">My Saves</a>
+@*                                <a class="dropdown-item" href="/saves">My Saves</a>*@
                                 @if (userHelper.MyUser.CanCreateContent)
                                 {
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/content/manage">Manage Articles</a>
-                                    <a class="dropdown-item" href="/page/manage">Manage Pages</a>
+@*                                    <a class="dropdown-item" href="/page/manage">Manage Pages</a>*@
                                 }
                                 @if (userHelper.MyUser.IsAdminOrHigher)
                                 {
@@ -72,7 +80,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" )>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -80,8 +88,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - @siteTitle -
-            Made with love by <a href="https://opennetworkfoundation.org">Open Network Foundation</a>
+            &copy; 2024 - @siteTitle -
+            Made with love by Inverted Tech
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

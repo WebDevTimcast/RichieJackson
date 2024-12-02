@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home";
 }
 
-<h1>@settings.PublicData?.Personalization?.MetaDescription</h1>
+<div class="main-home2">
 
 @foreach (var record in Model.Records)
 {
@@ -23,3 +23,5 @@
     </h3>
     <pre>@record.Description</pre>
 }
+
+</div>

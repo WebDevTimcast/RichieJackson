@@ -30,6 +30,7 @@ namespace SimpleWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.IsHome = true;
             return View("Home", new HomeViewModel((await contentService.GetAll()), userHelper.MyUser));
         }
 
