@@ -51,13 +51,20 @@ else
     <br />
     if (userHelper.MyUser == null)
     {
-        <pre>To see the content <a href="/register">sign up</a> for an account</pre>
+        <pre>To see the content <a href="/register?contentId=@(Model.Record.ContentID)">sign up</a> for an account</pre>
     }
     else
     {
         if (Model.Record.Data.OneTimeAmountCents > 0)
         {
-            <pre>To see the content please purchase for <a href="/content/@(Model.Record.ContentID)/purchase">@((Model.Record.Data.OneTimeAmountCents / 100.0).ToString("$###,##0.00"))</a> </pre>
+            <form method="get" action="/content/@(Model.Record.ContentID)/purchase">
+                <div class="form-group">
+                    <label asp-for="OneTimeAmount">Pay what you will but atleast @((Model.Record.Data.OneTimeAmountCents / 100.0).ToString("$###,##0.00"))</label>
+                    <input class="form-control" asp-for="OneTimeAmount" style="width: 100px;" type="number" min="@((Model.Record.Data.OneTimeAmountCents / 100.0).ToString("0.00"))" max="1000" step=".01" value="" />
+                    <span asp-validation-for="OneTimeAmount"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Buy</button>
+            </form>
         }
         else
         {

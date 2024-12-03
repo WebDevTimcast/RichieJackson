@@ -19,19 +19,32 @@ namespace SimpleWeb.Controllers
     {
         private readonly ILogger<HomeController> logger;
         private readonly ContentService contentService;
+        private readonly MainPaymentsService paymentsService;
         private readonly ONUserHelper userHelper;
 
-        public HomeController(ILogger<HomeController> logger, ContentService contentService, ONUserHelper userHelper)
+        public HomeController(ILogger<HomeController> logger, ContentService contentService, MainPaymentsService paymentsService, ONUserHelper userHelper)
         {
             this.logger = logger;
             this.contentService = contentService;
+            this.paymentsService = paymentsService;
             this.userHelper = userHelper;
         }
 
         public async Task<IActionResult> Index()
         {
+            var model = new HomeViewModel((await contentService.GetAll()), userHelper.MyUser);
+
+            if (userHelper.IsLoggedIn)
+            {
+                var res = await paymentsService.GetOwnOneTimeRecords();
+                if (res != null)
+                {
+                    model.OneTimeRecords.AddRange(res.Stripe);
+                }
+            }
+
             ViewBag.IsHome = true;
-            return View("Home", new HomeViewModel((await contentService.GetAll()), userHelper.MyUser));
+            return View("Home", model);
         }
 
         [HttpGet("search")]

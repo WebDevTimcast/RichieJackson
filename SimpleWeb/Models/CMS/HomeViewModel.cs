@@ -1,5 +1,7 @@
 ﻿using ON.Authentication;
 using ON.Fragments.Authentication;
+using ON.Fragments.Authorization.Payment;
+using ON.Fragments.Authorization.Payment.Stripe;
 using ON.Fragments.Content;
 using System;
 using System.Collections.Generic;
@@ -26,5 +28,11 @@ namespace SimpleWeb.Models.CMS
         public uint UserSubscriptionLevel { get; set; } = 0;
 
         public List<ContentListRecord> Records { get; } = new List<ContentListRecord>();
+        public List<StripeOneTimePaymentRecord> OneTimeRecords { get; internal set; } = new();
+
+        public bool HasPaidForContent(Guid contentId)
+        {
+            return OneTimeRecords.Any(r => r.InternalID == contentId.ToString());
+        }
     }
 }

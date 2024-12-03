@@ -42,15 +42,16 @@ namespace SimpleWeb.Services
             return reply;
         }
 
-        public async Task<GetNewOneTimeDetailsResponse> GetNewOneTimeDetails(Guid contentId, string domainName)
+        public async Task<GetNewOneTimeDetailsResponse> GetNewOneTimeDetails(Guid contentId, string domainName, double oneTimeAmount)
         {
             if (!IsLoggedIn)
                 return null;
 
             try
             {
+                var cents = (uint)Math.Round(oneTimeAmount * 100.0);
                 var client = new PaymentInterface.PaymentInterfaceClient(nameHelper.PaymentServiceChannel);
-                var reply = await client.GetNewOneTimeDetailsAsync(new() { InternalId = contentId.ToString(), DomainName = domainName }, GetMetadata());
+                var reply = await client.GetNewOneTimeDetailsAsync(new() { InternalId = contentId.ToString(), DomainName = domainName, DifferentPresetPriceCents = cents }, GetMetadata());
                 return reply;
             }
             catch
@@ -72,6 +73,22 @@ namespace SimpleWeb.Services
 
             var client = new PaymentInterface.PaymentInterfaceClient(nameHelper.PaymentServiceChannel);
             var reply = await client.GetOwnSubscriptionRecordsAsync(new(), GetMetadata());
+            return reply;
+        }
+
+        public async Task<GetOwnOneTimeRecordsResponse> GetOwnOneTimeRecords()
+        {
+            if (!IsLoggedIn)
+                return null;
+
+            if (nameHelper.PaymentServiceChannel == null)
+                return null;
+
+            logger.LogWarning($"******Trying to hopefully connect to PaymentService at:({nameHelper.PaymentServiceChannel.Target})******");
+
+
+            var client = new PaymentInterface.PaymentInterfaceClient(nameHelper.PaymentServiceChannel);
+            var reply = await client.GetOwnOneTimeRecordsAsync(new(), GetMetadata());
             return reply;
         }
 

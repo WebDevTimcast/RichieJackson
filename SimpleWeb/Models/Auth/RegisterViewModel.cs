@@ -32,6 +32,12 @@ namespace SimpleWeb.Models.Auth
         [Display(Name = "Confirm Password"), Compare(nameof(ConfirmPassword))]
         public string ConfirmPassword { get; set; }
 
+        [Required]
+        [Display(Name = "Amount")]
+        public double? Amount { get; set; } = 0;
+
+        public string ContentId { get; set; } = string.Empty;
+
         public string ErrorMessage { get; set; }
     }
 }

@@ -22,12 +22,14 @@ namespace SimpleWeb.Controllers
     public class AuthController : Controller
     {
         private readonly ILogger<AuthController> logger;
+        private readonly MainPaymentsService paymentsService;
         private readonly UserService userService;
         private readonly ONUserHelper userHelper;
 
-        public AuthController(ILogger<AuthController> logger, UserService userService, ONUserHelper userHelper)
+        public AuthController(ILogger<AuthController> logger, MainPaymentsService paymentsService, UserService userService, ONUserHelper userHelper)
         {
             this.logger = logger;
+            this.paymentsService = paymentsService;
             this.userService = userService;
             this.userHelper = userHelper;
         }
@@ -174,9 +176,25 @@ namespace SimpleWeb.Controllers
 
         [AllowAnonymous]
         [HttpGet("/register")]
-        public IActionResult RegisterGet()
+        public IActionResult RegisterGet(double? val, string contentId = "")
         {
-            return View("Register");
+            var vm = new RegisterViewModel()
+            {
+                Amount = val,
+                ContentId = contentId,
+            };
+
+            if (userHelper.IsLoggedIn)
+            {
+                if (!string.IsNullOrWhiteSpace(vm.ContentId))
+                {
+                    return Redirect("/content/" + vm.ContentId);
+                }
+
+                return RedirectToAction(nameof(SettingsGet));
+            }
+
+            return View("Register", vm);
         }
 
         [AllowAnonymous]
@@ -207,7 +225,16 @@ namespace SimpleWeb.Controllers
             {
                 HttpOnly = true
             });
-            return RedirectToAction(nameof(SettingsGet));
+
+            if (!string.IsNullOrWhiteSpace(vm.ContentId))
+            {
+                if (Guid.TryParse(vm.ContentId, out var contentId))
+                {
+                    return Redirect($"/content/{vm.ContentId}/purchase?oneTimeAmount={vm.Amount}");
+                }
+            }
+
+            return Redirect("/");
         }
 
         [HttpGet("/settings")]

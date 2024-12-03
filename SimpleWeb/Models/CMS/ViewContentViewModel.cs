@@ -2,6 +2,8 @@
 using ON.Fragments.Content;
 using ON.Fragments.Content.Stats;
 using SimpleWeb.Models.Comment;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace SimpleWeb.Models.CMS
 {
@@ -10,6 +12,10 @@ namespace SimpleWeb.Models.CMS
         public ContentPublicRecord Record { get; set; }
         public ViewCommentsViewModel Comments { get; set; }
         public GetContentStatsResponse Stats { get; set; }
+
+        [Required]
+        [Display(Name = "Amount")]
+        public double OneTimeAmount { get; set; } = 0;
 
         public bool CanShowContent(ONUser user)
         {
