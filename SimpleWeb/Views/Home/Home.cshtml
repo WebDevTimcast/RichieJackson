@@ -10,7 +10,6 @@
 <div class="col-lg-8" style="background-color: rgba(0, 0, 0, 0.33); padding: 30px 30px 30px 30px;">
     @foreach (var record in Model.Records)
     {
-        <img src="/img//RichieThumbnail.jpg" style="width: 100%" />
         <ul style="width: 100%; display: flex; justify-content: space-around; list-style: none; margin: 0px; padding: 0px;">
             <li>
                 <h2 style="color: white; text-align: center; font-weight: bold;">
@@ -19,6 +18,7 @@
                 </h2>
             </li>
         </ul>
+        <img src="/img//RichieThumbnail.jpg" style="width: 100%" />
 
         @if (Model.IsWritterOrHigher(userHelper) || Model.HasPaidForContent(record.ContentIDGuid))
         {
@@ -28,7 +28,7 @@
         }
         else
         {
-            <ul style="width: 100%; display: flex; justify-content: space-around; list-style: none; margin: 0px; padding: 0px;">
+            <ul style="width: 100%; display: flex; justify-content: space-around; list-style: none; margin: 15px 0px 0px 0px; padding: 0px;">
                 <li><a class="btn btn-primary btn-big" asp-area="" asp-controller="register" asp-action="" asp-route-contentId="@(record.ContentID)" asp-route-val="2" style="margin: 0px 0px 0px 0px;">BUY NOW FOR $2</a></li>
                 <li style="color: white; font-size: 15px; font-weight: bold; margin-top: 5px;">OR</li>
                 <li><a class="btn btn-primary btn-big" asp-area="" asp-controller="register" asp-action="" asp-route-contentId="@(record.ContentID)" style="margin: 0px 0px 0px 0px;">PAY WHAT YOU WANT</a></li>
