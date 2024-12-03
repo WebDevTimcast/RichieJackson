@@ -34,5 +34,10 @@ namespace SimpleWeb.Models.CMS
         {
             return OneTimeRecords.Any(r => r.InternalID == contentId.ToString());
         }
+
+        public bool IsWritterOrHigher(ONUserHelper userHelper)
+        {
+            return userHelper.MyUser == null ? false : userHelper.MyUser.IsWriterOrHigher;
+        }
     }
 }
