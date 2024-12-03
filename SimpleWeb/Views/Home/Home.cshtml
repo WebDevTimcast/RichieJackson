@@ -28,11 +28,17 @@
         }
         else
         {
-            <ul style="width: 100%; display: flex; justify-content: space-around; list-style: none; margin: 15px 0px 0px 0px; padding: 0px;">
-                <li><a class="btn btn-primary btn-big" asp-area="" asp-controller="register" asp-action="" asp-route-contentId="@(record.ContentID)" asp-route-val="2" style="margin: 0px 0px 0px 0px;">BUY NOW FOR $2</a></li>
-                <li style="color: white; font-size: 15px; font-weight: bold; margin-top: 5px;">OR</li>
-                <li><a class="btn btn-primary btn-big" asp-area="" asp-controller="register" asp-action="" asp-route-contentId="@(record.ContentID)" style="margin: 0px 0px 0px 0px;">PAY WHAT YOU WANT</a></li>
-            </ul>
+            <div class="row" style="width: 100%; margin: 15px 0px 0px 0px;">
+                <div class="col-sm-12 col-md-5" style="text-align:center">
+                    <a class="btn btn-primary btn-big" asp-area="" asp-controller="register" asp-action="" asp-route-contentId="@(record.ContentID)" asp-route-val="2" style="margin: 0px 0px 0px 0px;">BUY NOW FOR $2</a>
+                </div>
+                <div class="col-sm-12 col-md-2" style="text-align:center;  margin-top: 6px;  margin-bottom: 6px;">
+                    <span style="color: white; font-size: 15px; font-weight: bold;">OR</span>
+                </div>
+                <div class="col-sm-12 col-md-5" style="text-align:center">
+                    <a class="btn btn-primary btn-big" asp-area="" asp-controller="register" asp-action="" asp-route-contentId="@(record.ContentID)" style="margin: 0px 0px 0px 0px;">PAY WHAT YOU WANT</a>
+                </div>
+            </div>
         }
     }
 </div>
@@ -260,7 +266,7 @@
                 });
             }
         })();
-        /*]]>*/
+                        /*]]>*/
     </script>
 </div>
 <div class="col-lg-3"></div>
