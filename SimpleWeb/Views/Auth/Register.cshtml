@@ -14,7 +14,7 @@
 <form asp-action="register" method="post" class="needs-validation" novalidate>
   <input type="hidden" asp-for="ContentId" />
     <div class="form-group">
-        <label asp-for="Amount">Pay what you will but atleast $2.00</label>
+        <label asp-for="Amount">Pay what you will but at least $2.00</label>
         <input class="form-control" asp-for="Amount" type="number" min="2" max="1000" step=".01" />
         <span asp-validation-for="Amount"></span>
     </div>

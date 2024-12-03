@@ -59,7 +59,7 @@ else
         {
             <form method="get" action="/content/@(Model.Record.ContentID)/purchase">
                 <div class="form-group">
-                    <label asp-for="OneTimeAmount">Pay what you will but atleast @((Model.Record.Data.OneTimeAmountCents / 100.0).ToString("$###,##0.00"))</label>
+                    <label asp-for="OneTimeAmount">Pay what you will but at least @((Model.Record.Data.OneTimeAmountCents / 100.0).ToString("$###,##0.00"))</label>
                     <input class="form-control" asp-for="OneTimeAmount" style="width: 100px;" type="number" min="@((Model.Record.Data.OneTimeAmountCents / 100.0).ToString("0.00"))" max="1000" step=".01" value="" />
                     <span asp-validation-for="OneTimeAmount"></span>
                 </div>
