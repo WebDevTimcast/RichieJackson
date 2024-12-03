@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ON.Authentication;
+using ON.Fragments.Authentication;
 using ON.Fragments.Generic;
 using SimpleWeb.Models;
 using SimpleWeb.Models.Auth;
@@ -208,6 +209,11 @@ namespace SimpleWeb.Controllers
             }
 
             var res = await userService.CreateUser(vm);
+            if (res?.Error == CreateUserResponse.Types.CreateUserResponseErrorType.EmailTaken)
+            {
+                vm.ErrorMessage = "That email is already registered.";
+                return View(vm);
+            }
 
             if (res.Error == ON.Fragments.Authentication.CreateUserResponse.Types.CreateUserResponseErrorType.UserNameTaken)
             {

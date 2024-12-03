@@ -19,6 +19,8 @@ namespace SimpleWeb.Services
         private readonly ServiceNameHelper nameHelper;
         public readonly ONUser User;
 
+        private readonly Random random = new();
+
         public UserService(ServiceNameHelper nameHelper, ONUserHelper userHelper, ILogger<UserService> logger)
         {
             this.logger = logger;
@@ -84,11 +86,15 @@ namespace SimpleWeb.Services
 
         public async Task<CreateUserResponse> CreateUser(RegisterViewModel vm)
         {
+            var user = "user" + random.NextInt64().ToString();
+            if (user.Length > 20)
+                user = user.Substring(0, 20);
+
             var req = new CreateUserRequest
             {
-                UserName = vm.UserName,
-                DisplayName = vm.DisplayName,
-                Password = vm.Password,
+                UserName = user,
+                DisplayName = user,
+                Password = "ResetMe!" + random.NextInt64().ToString() + random.NextInt64().ToString(),
             };
 
             req.Emails.Add(vm.Email);
