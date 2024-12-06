@@ -15,6 +15,8 @@ namespace SimpleWeb.Services
 {
     public class UserService
     {
+        public const string TEMP_PASSWORD = "TempPassword123!";
+
         private readonly ILogger<UserService> logger;
         private readonly ServiceNameHelper nameHelper;
         public readonly ONUser User;
@@ -94,7 +96,7 @@ namespace SimpleWeb.Services
             {
                 UserName = user,
                 DisplayName = user,
-                Password = "ResetMe!" + random.NextInt64().ToString() + random.NextInt64().ToString(),
+                Password = TEMP_PASSWORD,
             };
 
             req.Emails.Add(vm.Email);

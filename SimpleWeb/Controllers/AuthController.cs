@@ -211,8 +211,24 @@ namespace SimpleWeb.Controllers
             var res = await userService.CreateUser(vm);
             if (res?.Error == CreateUserResponse.Types.CreateUserResponseErrorType.EmailTaken)
             {
-                vm.ErrorMessage = "That email is already registered.";
-                return View(vm);
+                var token = await userService.AuthenticateUser(vm.Email, UserService.TEMP_PASSWORD, "");
+
+                Response.Cookies.Append(JwtExtensions.JWT_COOKIE_NAME, token, new CookieOptions()
+                {
+                    HttpOnly = true,
+                    Expires = DateTimeOffset.UtcNow.AddDays(21),
+                    IsEssential = true,
+                });
+
+                if (!string.IsNullOrWhiteSpace(vm.ContentId))
+                {
+                    if (Guid.TryParse(vm.ContentId, out var contentId))
+                    {
+                        return Redirect($"/content/{vm.ContentId}");
+                    }
+                }
+
+                return Redirect("/");
             }
 
             if (res.Error == ON.Fragments.Authentication.CreateUserResponse.Types.CreateUserResponseErrorType.UserNameTaken)
