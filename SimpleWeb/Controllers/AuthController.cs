@@ -220,15 +220,7 @@ namespace SimpleWeb.Controllers
                     IsEssential = true,
                 });
 
-                if (!string.IsNullOrWhiteSpace(vm.ContentId))
-                {
-                    if (Guid.TryParse(vm.ContentId, out var contentId))
-                    {
-                        return Redirect($"/content/{vm.ContentId}");
-                    }
-                }
-
-                return Redirect("/");
+                return Redirect("/payment/stripe/check");
             }
 
             if (res.Error == ON.Fragments.Authentication.CreateUserResponse.Types.CreateUserResponseErrorType.UserNameTaken)
