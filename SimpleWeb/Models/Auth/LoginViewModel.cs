@@ -9,7 +9,7 @@ namespace SimpleWeb.Models.Auth
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Login Name")]
+        [Display(Name = "Email Address")]
         public string LoginName { get; set; }
 
         [Required]

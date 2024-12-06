@@ -6,7 +6,7 @@
 <form asp-controller="login" asp-action="" method="post" class="needs-validation" novalidate>
     <h2 style="color:red;">@Model?.ErrorMessage</h2>
     <div class="form-group">
-        <label asp-for="LoginName"></label>
+        <label asp-for="LoginName">Email Address</label>
         <input class="form-control" asp-for="LoginName" />
         <span asp-validation-for="LoginName"></span>
     </div>
@@ -14,11 +14,6 @@
         <label asp-for="Password"></label>
         <input class="form-control" asp-for="Password" />
         <span asp-validation-for="Password"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="MFACode"></label>
-        <input class="form-control" asp-for="MFACode" />
-        <span asp-validation-for="MFACode"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Login</button>
